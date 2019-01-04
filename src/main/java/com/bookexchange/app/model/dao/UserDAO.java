@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class UserDAO {
@@ -54,12 +55,21 @@ public class UserDAO {
     }
 
     /**
+     * 获取用户全部信息
+     * @param uid
+     * @return
+     */
+    public UserDO getUserInfo(int uid) {
+        return userMapper.selectUserInfoFromUid(uid);
+    }
+
+    /**
      * 修改用户信息, 原子操作, 不需要事务
      * @param uid user id
      * @param newContact new contact
      */
-    public void modifyUserContact(Integer uid, String newContact) {
-        userMapper.updateContactFromUserDO(new UserDO(uid, newContact));
+    public void modifyUserInfo(Integer uid, String newContact, String newName) {
+        userMapper.updateInfoFromUserDO(new UserDO(uid, newContact, newName));
     }
 
     /**
