@@ -2,6 +2,7 @@ package com.bookexchange.app.service;
 
 import com.bookexchange.app.model.context.dataWrapper.BookPostsGetDataWrapper;
 import com.bookexchange.app.model.context.dataWrapper.LoginDataWrapper;
+import com.bookexchange.app.model.context.dataWrapper.UserInfoDataWrapper;
 import com.bookexchange.app.model.context.request.UserModifyAuthRequest;
 import com.bookexchange.app.model.context.request.MyAuthRequest;
 import com.bookexchange.app.model.context.response.MyResponse;
@@ -10,6 +11,7 @@ import com.bookexchange.app.model.context.response.WXCode2SessionResponse;
 import com.bookexchange.app.model.dao.BookDAO;
 import com.bookexchange.app.model.dao.UserDAO;
 import com.bookexchange.app.model.model.BookDO;
+import com.bookexchange.app.model.model.UserDO;
 import com.bookexchange.app.utils.AuthValidationHelper;
 import com.bookexchange.app.utils.WXLoginClient;
 import org.jasypt.digest.StringDigester;
@@ -120,9 +122,9 @@ public class UserService {
         MyResponse resp;
         Integer uid = authValidationHelper.validate(headers.getHeaderString(HttpHeaders.AUTHORIZATION));
         if (uid != null) {
-            String contact = userDAO.getUserContact(uid);
-            if (contact != null)
-                resp = new MyResponse<>(ResponseType.SUCCESS, contact);
+            UserDO user = userDAO.getUserInfo(uid);
+            if (user != null)
+                resp = new MyResponse<>(ResponseType.SUCCESS, new UserInfoDataWrapper(user));
             else
                 resp = MyResponse.getDefaultResponse(ResponseType.INTERNAL_ERR);
         }
@@ -154,7 +156,7 @@ public class UserService {
         }
         else {
             try {
-                userDAO.modifyUserContact(uid, request.getContact());
+                userDAO.modifyUserInfo(uid, request.getContact(), request.getName());
                 resp = MyResponse.getDefaultResponse(ResponseType.SUCCESS);
             } catch (Exception e) {
                 e.printStackTrace();
