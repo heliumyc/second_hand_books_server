@@ -15,6 +15,8 @@ public class BookDO {
     private @Getter @Setter String title;
     @JsonProperty("isbn")
     private @Getter @Setter String isbn;
+    @JsonProperty("major")
+    private @Getter @Setter int major;
     @JsonProperty("price")
     private @Getter @Setter double price;
     @JsonProperty("note")
@@ -35,13 +37,14 @@ public class BookDO {
         this.uid = uid;
     }
 
-    public BookDO(int bid, String title, String isbn, double price, String note, int uid) {
+    public BookDO(int bid, String title, String isbn, int major, double price, String note, int uid) {
         this.bid = bid;
         this.title = title;
         this.isbn = isbn;
         this.price = price;
         this.note = note;
         this.uid = uid;
+        this.major = major;
     }
 
     @Override

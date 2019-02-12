@@ -13,8 +13,8 @@ public class BookWithContactDO extends BookDO {
 
     public BookWithContactDO() {}
 
-    public BookWithContactDO(int bid, String title, String isbn, double price, String note, int uid, String contact) {
-        super(bid, title, isbn, price, note, uid);
+    public BookWithContactDO(int bid, String title, String isbn, int major, double price, String note, int uid, String contact) {
+        super(bid, title, isbn, major, price, note, uid);
         this.contact = contact;
     }
 

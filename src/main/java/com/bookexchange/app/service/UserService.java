@@ -3,6 +3,7 @@ package com.bookexchange.app.service;
 import com.bookexchange.app.model.context.dataWrapper.BookPostsGetDataWrapper;
 import com.bookexchange.app.model.context.dataWrapper.LoginDataWrapper;
 import com.bookexchange.app.model.context.dataWrapper.UserInfoDataWrapper;
+import com.bookexchange.app.model.context.dataWrapper.UserPublicInfoDataWrapper;
 import com.bookexchange.app.model.context.request.UserModifyAuthRequest;
 import com.bookexchange.app.model.context.request.MyAuthRequest;
 import com.bookexchange.app.model.context.response.MyResponse;
@@ -150,7 +151,8 @@ public class UserService {
             resp = MyResponse.getDefaultResponse(ResponseType.AUTHENTICATION_ERR);
             return resp;
         }
-        else if (request.getContact() == null || request.getContact().length() > 50){
+        else if (request.getContact() == null || request.getName() == null ||
+                request.getName().length() > 30 || request.getContact().length() > 50){
             resp = MyResponse.getDefaultResponse(ResponseType.PARAMETERS_ERR);
             return resp;
         }
@@ -208,6 +210,30 @@ public class UserService {
             String contact = userDAO.getUserContact(uid);
             BookPostsGetDataWrapper bookRes = new BookPostsGetDataWrapper(books, contact);
             resp = new MyResponse<>(ResponseType.SUCCESS, bookRes);
+        } catch (Exception e) {
+            e.printStackTrace();
+            resp = MyResponse.getDefaultResponse(ResponseType.INTERNAL_ERR);
+        }
+        return resp;
+    }
+
+    /**
+     * get user public info which does not require any authentication
+     * @param uid user id
+     * @return json
+     */
+    @GET
+    @Path("/{uid}/public-info")
+    @Produces(MediaType.APPLICATION_JSON)
+    public MyResponse getUserPublicInfo(@PathParam("uid") int uid) {
+        // 不需要进行检测, 任何人可以访问
+        MyResponse resp;
+        try {
+            UserDO user = userDAO.getUserInfo(uid);
+            if (user != null)
+                resp = new MyResponse<>(ResponseType.SUCCESS, new UserPublicInfoDataWrapper(user));
+            else
+                resp = MyResponse.getDefaultResponse(ResponseType.INTERNAL_ERR);
         } catch (Exception e) {
             e.printStackTrace();
             resp = MyResponse.getDefaultResponse(ResponseType.INTERNAL_ERR);

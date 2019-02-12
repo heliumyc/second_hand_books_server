@@ -10,8 +10,8 @@ import java.util.HashMap;
 @Repository
 @Mapper
 public interface UserMapper {
-    @Insert("INSERT INTO Users(contact, openid) VALUES(#{contact}, #{openid})")
-    void insertUser(UserDO user);
+    @Insert("INSERT INTO Users(name, contact, openid) VALUES(#{name}, #{contact}, #{openid})")
+    int insertUser(UserDO user);
 
     @Update("UPDATE Users SET contact=#{contact}, name=#{name} WHERE uid=#{uid}")
     void updateInfoFromUserDO(UserDO user);

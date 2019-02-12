@@ -41,7 +41,8 @@ public class UserDAO {
      */
     public void tryRegister(String openid) {
         if (!userMapper.selectIfOpenidExists(openid)) {
-            userMapper.insertUser(new UserDO(openid));
+            UserDO user = new UserDO(openid, "未设置联系方式", "用户"+openid.substring(0,5));
+            userMapper.insertUser(user);
         }
     }
 
