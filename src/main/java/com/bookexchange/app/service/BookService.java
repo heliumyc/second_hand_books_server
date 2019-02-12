@@ -9,7 +9,6 @@ import com.bookexchange.app.model.context.response.MyResponse;
 import com.bookexchange.app.model.context.response.ResponseType;
 import com.bookexchange.app.model.dao.BookDAO;
 import com.bookexchange.app.model.model.BookDO;
-import com.bookexchange.app.model.model.BookWithContactDO;
 import com.bookexchange.app.utils.AuthValidationHelper;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,9 +63,9 @@ public class BookService {
         else {
             try {
                 List<Integer> bookIdList = bookDAO.queryToBooksId(query, page, pageSize);
-                List<BookWithContactDO> bookList = new ArrayList<>(bookIdList.size());
+                List<BookDO.BookWithContactDO> bookList = new ArrayList<>(bookIdList.size());
                 for (Integer bid : bookIdList) {
-                    BookWithContactDO book = bookDAO.getBookInfo(bid);
+                    BookDO.BookWithContactDO book = bookDAO.getBookInfo(bid);
                     if (book != null) {
                         bookList.add(book);
                     }
@@ -127,7 +126,7 @@ public class BookService {
 
         MyResponse resp;
         try {
-            BookWithContactDO book = bookDAO.getBookInfo(bid);
+            BookDO.BookWithContactDO book = bookDAO.getBookInfo(bid);
             if (book == null) {
                 resp = MyResponse.getDefaultResponse(ResponseType.PARAMETERS_ERR);
             }

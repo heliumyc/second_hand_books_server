@@ -1,7 +1,6 @@
 package com.bookexchange.app.model.dao;
 
 import com.bookexchange.app.model.model.BookDO;
-import com.bookexchange.app.model.model.BookWithContactDO;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 

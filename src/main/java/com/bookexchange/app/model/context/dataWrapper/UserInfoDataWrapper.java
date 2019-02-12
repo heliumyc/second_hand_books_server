@@ -1,6 +1,5 @@
 package com.bookexchange.app.model.context.dataWrapper;
 
-import com.bookexchange.app.model.model.BookWithContactDO;
 import com.bookexchange.app.model.model.UserDO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;

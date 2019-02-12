@@ -1,7 +1,6 @@
 package com.bookexchange.app.model.dao;
 
 import com.bookexchange.app.model.model.BookDO;
-import com.bookexchange.app.model.model.BookWithContactDO;
 import com.bookexchange.app.utils.SearchHelper;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,11 +42,11 @@ public class BookDAO {
      * @param bid book id
      * @return a book with contact info
      */
-    public BookWithContactDO getBookInfo(int bid) {
+    public BookDO.BookWithContactDO getBookInfo(int bid) {
         BookDO book = bookMapper.selectOneBook(bid);
         if (book == null) return null;
         String contact = userMapper.selectContactFromUid(book.getUid());
-        return new BookWithContactDO(book, contact);
+        return new BookDO.BookWithContactDO(book, contact);
     }
 
     /**
