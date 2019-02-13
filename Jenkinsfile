@@ -10,6 +10,13 @@ pipeline {
     stage('Build') {
       steps {
         sh 'echo "hello"'
+        sh '''#sh \'gradle build\'
+echo $REDIS_PORT'''
+      }
+    }
+    stage('Deliver') {
+      steps {
+        sh '#sh \'./jenkins/deliver.sh\''
       }
     }
   }
