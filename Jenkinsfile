@@ -9,14 +9,14 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'echo "hello"'
-        sh '''#sh \'gradle build\'
-echo $REDIS_PORT'''
+        sh '''echo \'Starting build with gradle\'
+sh \'gradle build\'
+'''
       }
     }
     stage('Deliver') {
       steps {
-        sh '#sh \'./jenkins/deliver.sh\''
+        sh 'sh \'./jenkins/scripts/deliver.sh\''
       }
     }
   }
