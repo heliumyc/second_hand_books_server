@@ -8,8 +8,10 @@ pipeline {
   }
   stages {
     stage('Build') {
+      agent any
       steps {
-        sh '''sh \'gradle -v\'
+        sh '''echo $JAVA_HOME
+sh \'gradle -v\'
 '''
       }
     }
