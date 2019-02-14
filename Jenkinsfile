@@ -9,8 +9,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh '''echo \'Starting build with gradle\'
-sh \'gradle build\'
+        sh '''sh \'gradle -v\'
 '''
       }
     }
