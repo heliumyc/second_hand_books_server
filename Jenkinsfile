@@ -2,7 +2,7 @@ pipeline {
   agent {
     docker {
       image 'gradle'
-      args '-v /home/helium/app:/home/helium/app'
+      args '--rm -u root -v "$PWD":/home/gradle/project  -w /home/gradle/project'
     }
 
   }
