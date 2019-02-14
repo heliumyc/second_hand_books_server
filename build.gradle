@@ -60,3 +60,17 @@ dependencies {
     testImplementation('org.springframework.boot:spring-boot-starter-test')
     testImplementation('org.springframework.security:spring-security-test')
 }
+
+allprojects {
+    task printProjectName {
+        doLast {
+            println "$project.name"
+        }
+    }
+
+    task printProjectVersion {
+        doLast {
+            println "$project.version"
+        }
+    }
+}
