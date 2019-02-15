@@ -10,10 +10,9 @@ pipeline {
     stage('Build') {
       agent any
       steps {
-        sh '''echo $JAVA_HOME
-gradle -v
+        sh '''gradle build
 ls -a
-'''
+ls /build/libs'''
       }
     }
     stage('Deliver') {
