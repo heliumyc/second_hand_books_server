@@ -41,7 +41,7 @@ dependencies {
     implementation("com.github.ulisesbocchio:jasypt-spring-boot-starter:2.1.0")
 
     // redis
-    compile("org.springframework.boot:spring-boot-starter-data-redis")
+    implementation("org.springframework.boot:spring-boot-starter-data-redis")
 
     // lucene
     implementation("org.apache.lucene:lucene-core:$luceneVersion" as Object)
