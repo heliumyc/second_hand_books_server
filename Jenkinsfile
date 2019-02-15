@@ -10,7 +10,7 @@ pipeline {
     stage('Build') {
       agent any
       steps {
-        sh '''gradle build
+        sh '''gradle build -i
 ls -a
 ls /build/libs'''
       }
