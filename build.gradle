@@ -3,13 +3,14 @@ buildscript {
     ext {
         springBootVersion = '2.1.0.RELEASE'
         luceneVersion = '7.0.0'
+        lombokVersion = '1.18.2'
     }
     repositories {
         maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
         mavenCentral()
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}" as Object)
     }
 }
 
@@ -43,11 +44,11 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-data-redis")
 
     // lucene
-    compile("org.apache.lucene:lucene-core:$luceneVersion")
-    compile("org.apache.lucene:lucene-analyzers-common:$luceneVersion")
-    compile("org.apache.lucene:lucene-analyzers-smartcn:$luceneVersion")
-    compile("org.apache.lucene:lucene-queryparser:$luceneVersion")
-    compile("org.apache.lucene:lucene-queries:$luceneVersion")
+    compile("org.apache.lucene:lucene-core:$luceneVersion" as Object)
+    compile("org.apache.lucene:lucene-analyzers-common:$luceneVersion" as Object)
+    compile("org.apache.lucene:lucene-analyzers-smartcn:$luceneVersion" as Object)
+    compile("org.apache.lucene:lucene-queryparser:$luceneVersion" as Object)
+    compile("org.apache.lucene:lucene-queries:$luceneVersion" as Object)
 
     // mybatis
     // 配置mybatis 数据源
@@ -57,7 +58,8 @@ dependencies {
 
     runtimeOnly('org.springframework.boot:spring-boot-devtools')
     compileOnly('org.springframework.boot:spring-boot-configuration-processor')
-    compileOnly('org.projectlombok:lombok')
+    annotationProcessor("org.projectlombok:lombok:$lombokVersion" as Object)
+    implementation("org.projectlombok:lombok:$lombokVersion" as Object)
     testImplementation('org.springframework.boot:spring-boot-starter-test')
     testImplementation('org.springframework.security:spring-security-test')
 }
