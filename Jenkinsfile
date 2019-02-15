@@ -10,7 +10,8 @@ pipeline {
     stage('Build') {
       agent any
       steps {
-        sh '''gradle build -i
+        sh '''echo $REDIS_PORT
+gradle build -i
 ls -a
 ls /build/libs'''
       }
@@ -21,5 +22,8 @@ ls /build/libs'''
 #sh \'./jenkins/scripts/deliver.sh\''''
       }
     }
+  }
+  environment {
+    REDIS_PORT = '$REDIS_PORT'
   }
 }
