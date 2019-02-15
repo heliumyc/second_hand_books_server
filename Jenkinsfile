@@ -11,13 +11,13 @@ pipeline {
       agent any
       steps {
         sh '''echo $JAVA_HOME
-sh \'gradle -v\'
+#sh \'gradle -v\'
 '''
       }
     }
     stage('Deliver') {
       steps {
-        sh 'sh \'./jenkins/scripts/deliver.sh\''
+        sh '#sh \'./jenkins/scripts/deliver.sh\''
       }
     }
   }
