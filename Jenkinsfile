@@ -12,6 +12,7 @@ pipeline {
       steps {
         sh '''echo $JAVA_HOME
 gradle -v
+ls -a
 '''
       }
     }
