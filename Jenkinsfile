@@ -12,8 +12,7 @@ pipeline {
       steps {
         sh '''echo $REDIS_PORT
 gradle build -i
-ls -a
-ls /build/libs'''
+ls -a'''
       }
     }
     stage('Deliver') {
