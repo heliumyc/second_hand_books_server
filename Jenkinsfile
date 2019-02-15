@@ -2,21 +2,23 @@ pipeline {
   agent {
     docker {
       image 'gradle'
-      args '-v /home/helium/app:/home/helium/app'
+      args '-u root -v "$PWD":/home/gradle/project  -w /home/gradle/project'
     }
 
   }
   stages {
     stage('Build') {
+      agent any
       steps {
-        sh '''echo \'Starting build with gradle\'
-sh \'gradle build\'
-'''
+        sh '''gradle build
+ls -a
+ls /build/libs'''
       }
     }
     stage('Deliver') {
       steps {
-        sh 'sh \'./jenkins/scripts/deliver.sh\''
+        sh '''echo \'deliver\'
+#sh \'./jenkins/scripts/deliver.sh\''''
       }
     }
   }
