@@ -2,7 +2,7 @@ pipeline {
   agent {
     docker {
       image 'gradle'
-      args '-u root -v "$PWD":/home/gradle/project  -w /home/gradle/project'
+      args '-u root -v "$PWD":/home/gradle/project --env-file /home/myenv  -w /home/gradle/project'
     }
 
   }
@@ -10,7 +10,8 @@ pipeline {
     stage('Build') {
       agent any
       steps {
-        sh '''gradle build -i
+        sh '''echo $REDIS_PORT
+gradle build -i
 ls -a
 ls /build/libs'''
       }
