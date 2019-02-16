@@ -7,3 +7,4 @@ VERSION = `gradle printProjectVersion`
 set +x
 
 echo NAME
+echo VERSION
