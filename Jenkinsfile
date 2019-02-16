@@ -2,7 +2,7 @@ pipeline {
   agent {
     docker {
       image 'gradle'
-      args '-u root -v gradle-cache:/home/gradle/.gradle -v "$PWD":/home/gradle/project --env-file /home/myenv  -w /home/gradle/project'
+      args '-u root -v gradle-cache:/home/gradle/.gradle -v "$PWD":/home/gradle/project --env-file /home/myenv  -w /home/gradle/project --net="host"'
     }
 
   }
@@ -10,15 +10,13 @@ pipeline {
     stage('Build') {
       agent any
       steps {
-        sh '''echo $REDIS_PORT
-gradle build -i
+        sh '''gradle build -i
 ls -a'''
       }
     }
     stage('Deliver') {
       steps {
-        sh '''echo \'deliver\'
-#sh \'./jenkins/scripts/deliver.sh\''''
+        sh '#sh \'./jenkins/scripts/deliver.sh\''
       }
     }
   }
