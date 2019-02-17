@@ -13,7 +13,8 @@ pipeline {
       steps {
         println wxDir
         sh '''gradle build -i
-ls -a'''
+echo $JOB_BASE_NAME
+echo $JOB_NAME'''
       }
     }
     stage('Deliver') {
