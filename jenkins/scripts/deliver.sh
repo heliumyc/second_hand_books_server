@@ -1,3 +1,5 @@
+gradle -v
+ls -a
 set -x
 NAME = `gradle printProjectName`
 set +x
