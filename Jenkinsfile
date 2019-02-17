@@ -6,10 +6,9 @@ pipeline {
     }
 
   }
-  def wsDir = "$JOB_NAME".replace("/","_")
   stages {
+
     stage('Build') {
-      agent any
       steps {
         println wxDir
         sh '''gradle build -i
