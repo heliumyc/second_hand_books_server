@@ -7,17 +7,23 @@ pipeline {
 
   }
   stages {
-
     stage('Build') {
       steps {
-        sh '''gradle build -i
-echo $JOB_BASE_NAME
-echo $JOB_NAME'''
+        ws(dir: '/home/wwwroot/$JOB_NAME') {
+          sh '''ls -a
+gradle build -i'''
+        }
+
       }
     }
     stage('Deliver') {
       steps {
         sh 'sh ./jenkins/scripts/deliver.sh'
+        ws(dir: '/home/wwwroot/$JOB_NAME') {
+          sh '''ls -a
+sh ./build/libs/deliver.sh'''
+        }
+
       }
     }
   }
