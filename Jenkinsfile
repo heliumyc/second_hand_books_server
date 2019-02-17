@@ -16,7 +16,7 @@ ls -a'''
     }
     stage('Deliver') {
       steps {
-        sh '''sh ./jenkins/scripts/deliver.sh'''
+        sh 'sh ./jenkins/scripts/deliver.sh'
       }
     }
   }
