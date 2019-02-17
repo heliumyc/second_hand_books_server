@@ -6,8 +6,8 @@ pipeline {
     }
 
   }
+  def wsDir = "$JOB_NAME".replace("/","_")
   stages {
-    def wsDir = "$JOB_NAME".replace("/","_")
     stage('Build') {
       agent any
       steps {
