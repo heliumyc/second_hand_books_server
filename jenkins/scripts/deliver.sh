@@ -11,8 +11,8 @@ echo $VERSION
 
 echo 'run service'
 ls
-ls build
-ls libs
-cd ./build/libs
+ls ..
+ls ../..
+ls ../../..
 # java -jar $NAME-$VERSION.jar
 # java -cp ./build/libs/ -jar ./build/libs/$NAME-$VERSION.jar
