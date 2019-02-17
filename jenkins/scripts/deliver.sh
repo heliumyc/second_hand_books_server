@@ -10,6 +10,9 @@ echo $NAME
 echo $VERSION
 
 echo 'run service'
+ls
+ls build
+ls libs
 cd ./build/libs
-java -jar $NAME-$VERSION.jar
+# java -jar $NAME-$VERSION.jar
 # java -cp ./build/libs/ -jar ./build/libs/$NAME-$VERSION.jar
