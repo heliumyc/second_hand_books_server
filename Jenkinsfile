@@ -18,6 +18,11 @@ pipeline {
         sh '''ls -a
 sh ./jenkins/scripts/deliver.sh'''
       }
+      post {
+        success {
+            sh './jenkins/scripts/deploy.sh'
+        }
+      }
     }
   }
 }
