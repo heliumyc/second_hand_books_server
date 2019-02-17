@@ -10,7 +10,6 @@ pipeline {
 
     stage('Build') {
       steps {
-        println wxDir
         sh '''gradle build -i
 echo $JOB_BASE_NAME
 echo $JOB_NAME'''
