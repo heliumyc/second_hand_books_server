@@ -13,4 +13,4 @@ echo 'run service'
 
 ls build
 ls build/libs
-java -cp ./build/libs/ -jar ./build/libs/$NAME-$VERSION.jar
+java -jar ./build/libs/$NAME-$VERSION.jar
