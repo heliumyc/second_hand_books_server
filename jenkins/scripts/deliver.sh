@@ -1,11 +1,11 @@
 gradle -v
 ls -a
 set -x
-NAME = `gradle printProjectName`
+NAME=`gradle printProjectName`
 set +x
 
 set -x
-VERSION = `gradle printProjectVersion`
+VERSION=`gradle printProjectVersion`
 set +x
 
 echo $NAME
