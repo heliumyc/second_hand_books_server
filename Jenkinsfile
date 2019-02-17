@@ -11,7 +11,9 @@ pipeline {
       agent any
       steps {
         sh '''gradle build -i
-ls -a'''
+ls -a
+echo $JOB_BASE_NAME
+echo env.JOB_BASE_NAME'''
       }
     }
     stage('Deliver') {
