@@ -9,21 +9,13 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        ws(dir: '/home/wwwroot/$JOB_NAME') {
-          sh '''ls -a
-gradle build -i'''
-        }
-
+        sh 'gradle build -i'
       }
     }
     stage('Deliver') {
       steps {
-        sh 'sh ./jenkins/scripts/deliver.sh'
-        ws(dir: '/home/wwwroot/$JOB_NAME') {
-          sh '''ls -a
-sh ./build/libs/deliver.sh'''
-        }
-
+        sh '''ls -a
+sh ./jenkins/scripts/deliver.sh'''
       }
     }
   }
