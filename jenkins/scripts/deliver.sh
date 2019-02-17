@@ -1,13 +1,11 @@
-set -x
 NAME=`gradle printProjectName`
-set +x
 
-set -x
 VERSION=`gradle printProjectVersion`
-set +x
 
+echo '========================================'
 echo $NAME
 echo $VERSION
+echo '========================================'
 
 echo 'run service'
 
