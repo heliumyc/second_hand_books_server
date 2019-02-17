@@ -1,6 +1,6 @@
-NAME=`gradle printProjectName`
+NAME=`gradle -q printProjectName`
 
-VERSION=`gradle printProjectVersion`
+VERSION=`gradle -q printProjectVersion`
 
 echo '========================================'
 echo $NAME
